@@ -17,3 +17,6 @@ Thumbs.db
 
 # WorkBuddy
 .workbuddy/memory/*.md
+
+# Posts symlink (local only)
+source/_posts
