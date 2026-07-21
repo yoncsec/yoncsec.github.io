@@ -1,0 +1,19 @@
+# Hexo
+public/
+.deploy_git/
+db.json
+*.log
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# WorkBuddy
+.workbuddy/memory/*.md
