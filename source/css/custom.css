@@ -672,7 +672,7 @@ html[data-user-color-scheme="dark"] .comments-intro-text {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 2rem auto 1.5rem;
+  margin: 0.75rem auto 1.75rem;
   padding: 0.65rem 1.25rem;
   width: fit-content;
   max-width: 100%;
