@@ -357,4 +357,33 @@ $(function () {
     }
   });
 
+  // ========================================
+  // 11. 评论区增强（参考 txtmix.com 风格）
+  // ========================================
+  var commentsEl = document.getElementById('comments');
+  if (commentsEl && commentsEl.children.length) {
+    // 引导文案
+    var head = document.createElement('div');
+    head.className = 'comments-intro';
+    head.innerHTML =
+      '<h2 class="comments-intro-title">💬 参与讨论</h2>' +
+      '<p class="comments-intro-text">使用 GitHub 账号登录即可评论。欢迎补充实战细节、提出异议、分享踩坑经验。</p>';
+    commentsEl.insertBefore(head, commentsEl.firstChild);
+
+    // 懒加载：滚动到评论区可见才让 giscus 脚本执行
+    // Fluid 在 DOMContentLoaded 时注入 giscus script，这里延迟到可见时再注入
+    var giscusMount = commentsEl.querySelector('.giscus, #giscus-container, [class*="giscus"]');
+    if (giscusMount && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            io.disconnect();
+            commentsEl.classList.add('comments-visible');
+          }
+        });
+      }, { rootMargin: '200px' });
+      io.observe(commentsEl);
+    }
+  }
+
 });

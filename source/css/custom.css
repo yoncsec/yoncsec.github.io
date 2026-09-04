@@ -615,3 +615,51 @@ figure.highlight::before {
   #particle-canvas { opacity: 0.5; }
   .index-card:hover { transform: none; }
 }
+
+/* ============================================
+ * 11. 评论区增强（txtmix 风格）
+ * ============================================ */
+#comments {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(139, 92, 246, 0.35);
+}
+
+.comments-intro {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.06));
+  border-left: 3px solid #8b5cf6;
+  border-radius: 8px;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+}
+
+.comments-intro-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c1d95;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro-title {
+  color: #c4b5fd;
+}
+
+.comments-intro-text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #718096;
+  line-height: 1.6;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro-text {
+  color: #a7a9ad;
+}
+
+/* giscus iframe 圆角适配 */
+#comments iframe {
+  border-radius: 8px;
+}
