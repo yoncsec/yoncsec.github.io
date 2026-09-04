@@ -1,0 +1,721 @@
+/* ============================================
+ * Yoncsec Blog - Ultra Custom Styles
+ * 炫酷特效完整版
+ * ============================================ */
+
+/* === 粒子背景 Canvas === */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* === Matrix 代码雨 Canvas === */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+/* === 霓虹星尘 Canvas === */
+
+/* === 全局 === */
+html {
+  scroll-behavior: smooth;
+}
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+::-moz-selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+
+/* === 滚动条 === */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4f46e5, #9333ea, #db2777);
+}
+
+/* === 霓虹标题 === */
+.navbar .navbar-brand,
+.navbar .blog-title {
+  background: linear-gradient(135deg, #818cf8, #c084fc, #f0abfc, #818cf8);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  animation: shimmer 4s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+}
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+/* === 首页副标题霓虹 === */
+#board .slogan {
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+/* === 文章卡片 - 3D 倾斜 + 渐变边框 === */
+.index-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 14px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.index-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 14px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.4), rgba(168,85,247,0.4), rgba(236,72,153,0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.index-card:hover::before {
+  opacity: 1;
+}
+.index-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15), 0 0 30px rgba(139, 92, 246, 0.1);
+}
+.index-card .post-title {
+  transition: all 0.3s ease;
+}
+.index-card:hover .post-title {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === 文章正文标题 === */
+.post-content h1, .post-content h2, .post-content h3 {
+  position: relative;
+  font-weight: 800;
+}
+.post-content h2 {
+  padding-left: 16px;
+  border-left: 4px solid;
+  border-image: linear-gradient(180deg, #6366f1, #a855f7) 1;
+}
+.post-content h3 {
+  padding-left: 16px;
+  border-left: 4px solid;
+  border-image: linear-gradient(180deg, #a855f7, #ec4899) 1;
+}
+
+/* === 引用块 === */
+.post-content blockquote {
+  border-left: 4px solid #8b5cf6;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.06));
+  border-radius: 0 12px 12px 0;
+  padding: 14px 24px;
+  margin: 18px 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.post-content blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.post-content blockquote:hover::before { opacity: 1; }
+.post-content blockquote:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);
+}
+
+/* === 代码块 === */
+.post-content figure {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.post-content figure:hover {
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+.post-content pre { border-radius: 12px; }
+
+/* === 行内代码 - 霓虹 === */
+.post-content p code, .post-content li code {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+  color: #6366f1;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.88em;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.08);
+}
+
+/* === 表格 === */
+.post-content table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.post-content table thead {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #db2777);
+}
+.post-content table thead th {
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  letter-spacing: 0.03em;
+}
+.post-content table tbody tr {
+  transition: all 0.2s ease;
+}
+.post-content table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.06);
+  transform: scale(1.005);
+}
+
+/* === 超链接霓虹下划线 === */
+.post-content a {
+  position: relative;
+  transition: color 0.3s ease;
+  text-shadow: 0 0 0 transparent;
+}
+.post-content a:hover {
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+.post-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+  border-radius: 1px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.5);
+}
+.post-content a:hover::after { width: 100%; }
+
+/* === 图片 === */
+.post-content img {
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+.post-content img:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+/* === 分割线 - 渐变光带 === */
+.post-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #6366f1, #a855f7, #ec4899, transparent);
+  margin: 36px 0;
+  border-radius: 1px;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+}
+
+/* === 按钮 - 霓虹脉冲 === */
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
+  animation: btnPulse 1.5s ease-in-out infinite;
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3), 0 0 20px rgba(139, 92, 246, 0.2); }
+  50% { box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4), 0 0 35px rgba(139, 92, 246, 0.35); }
+}
+
+/* === 标签云 === */
+.tag-cloud a {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 6px 14px;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid transparent;
+}
+.tag-cloud a:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 0 12px rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* === 归档 === */
+.archive .archive-item {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+.archive .archive-item:hover {
+  transform: translateX(10px);
+  box-shadow: -4px 0 12px rgba(99, 102, 241, 0.1);
+}
+
+/* === 关于页头像 - 浮动+脉冲光环 === */
+.about-avatar {
+  border-radius: 50%;
+  transition: all 0.5s ease;
+  animation: floatAvatar 4s ease-in-out infinite;
+}
+.about-avatar:hover {
+  transform: scale(1.12) rotate(5deg);
+  box-shadow: 0 12px 36px rgba(99, 102, 241, 0.35), 0 0 30px rgba(139, 92, 246, 0.2);
+}
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* === 页脚毛玻璃 === */
+footer {
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* === 版权声明 === */
+.post-copyright {
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.06));
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  transition: all 0.3s ease;
+}
+.post-copyright:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+}
+
+/* === 上一篇下一篇 === */
+.post-prev-next {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.post-prev-next:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+
+/* === TOC === */
+#toc { border-radius: 12px; }
+.tocbot-list a {
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+.tocbot-list a:hover {
+  padding-left: 8px;
+  background: rgba(99, 102, 241, 0.06);
+}
+
+/* === 加密输入框 === */
+#swaller-input {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+#swaller-input:focus {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+/* === 搜索框 === */
+#algolia-input, #local-search-input {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+#algolia-input:focus, #local-search-input:focus {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2), 0 0 20px rgba(139, 92, 246, 0.1);
+  border-color: #6366f1;
+}
+
+/* === 滚动揭示动画 === */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 标题类元素：更柔和的揭示动画 */
+.post-content h1.reveal,
+.post-content h2.reveal,
+.post-content h3.reveal,
+.post-content h4.reveal {
+  transform: translateY(14px);
+  transition-duration: 1.1s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === 首页卡片渐入 === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.index-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+.index-card:nth-child(1) { animation-delay: 0.05s; }
+.index-card:nth-child(2) { animation-delay: 0.12s; }
+.index-card:nth-child(3) { animation-delay: 0.19s; }
+.index-card:nth-child(4) { animation-delay: 0.26s; }
+.index-card:nth-child(5) { animation-delay: 0.33s; }
+.index-card:nth-child(6) { animation-delay: 0.40s; }
+.index-card:nth-child(7) { animation-delay: 0.47s; }
+.index-card:nth-child(8) { animation-delay: 0.54s; }
+.index-card:nth-child(9) { animation-delay: 0.61s; }
+.index-card:nth-child(10) { animation-delay: 0.68s; }
+
+/* === Banner 区域 === */
+#banner {
+  position: relative;
+  overflow: hidden;
+}
+
+/* === 暗色模式 === */
+html[data-user-color-scheme="dark"] .post-content p code,
+html[data-user-color-scheme="dark"] .post-content li code {
+  background: rgba(129, 140, 248, 0.15);
+  color: #a5b4fc;
+}
+html[data-user-color-scheme="dark"] .post-content blockquote {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+}
+html[data-user-color-scheme="dark"] .post-content table thead {
+  background: linear-gradient(135deg, #4338ca, #6d28d9, #be185d);
+}
+html[data-user-color-scheme="dark"] .post-copyright {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08));
+}
+html[data-user-color-scheme="dark"] .index-card:hover .post-title {
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+ * 新增：Mac风格代码块 (红黄绿圆点)
+ * ============================================ */
+figure.highlight {
+  position: relative;
+  padding-top: 32px !important;
+}
+figure.highlight::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  z-index: 1;
+}
+
+/* ============================================
+ * 新增：文章排版优化
+ * ============================================ */
+.post-content p {
+  letter-spacing: 0.03em;
+  line-height: 2;
+  margin-bottom: 1.2em;
+  text-align: justify;
+}
+.post-content li {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  line-height: 1.9;
+}
+.post-content ul, .post-content ol {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-left: 1.5em;
+}
+.post-content h1 { margin-top: 2em; margin-bottom: 0.8em; }
+.post-content h2 { margin-top: 2em; margin-bottom: 0.8em; }
+.post-content h3 { margin-top: 1.5em; margin-bottom: 0.6em; }
+
+/* ============================================
+ * 新增：首页卡片图片悬浮放大
+ * ============================================ */
+.index-card .index-img {
+  transition: transform 0.4s ease;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+}
+.index-card:hover .index-img {
+  transform: scale(1.04);
+}
+
+/* ============================================
+ * 新增：文章图片统一居中+圆角+阴影
+ * ============================================ */
+.post-content p > img,
+.post-content p > a > img,
+.page-content img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+  max-width: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+}
+.post-content p > img:hover,
+.post-content p > a > img:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 24px rgba(139, 92, 246, 0.15);
+  transform: scale(1.02);
+}
+
+/* ============================================
+ * 新增：友链卡片悬浮特效
+ * ============================================ */
+.links-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.links-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(99, 102, 241, 0.15), 0 0 24px rgba(139, 92, 246, 0.1);
+}
+.links-item .links-avatar img {
+  transition: transform 0.4s ease;
+}
+.links-item:hover .links-avatar img {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* ============================================
+ * 新增：Tag标签页标签hover动画
+ * ============================================ */
+.tagcloud a {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin: 4px;
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+  display: inline-block;
+}
+.tagcloud a:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+ * 新增：归档列表优化
+ * ============================================ */
+.archive-item {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin: 4px 0;
+}
+.archive-item:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.06));
+  transform: translateX(10px);
+}
+
+/* ============================================
+ * 新增：分类页标题优化
+ * ============================================ */
+.category-list-item {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  margin: 6px 0;
+}
+.category-list-item:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+  padding-left: 10px;
+}
+
+/* ============================================
+ * 新增：页脚运行时间样式
+ * ============================================ */
+#runtime_span {
+  display: inline-block;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+/* ============================================
+ * 新增：导航栏菜单 hover 下划线
+ * ============================================ */
+.navbar-nav .nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #818cf8, #c084fc);
+  border-radius: 1px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
+}
+.navbar-nav .nav-link:hover::after {
+  width: 60%;
+}
+
+/* ============================================
+ * 新增：面包屑导航优化
+ * ============================================ */
+.breadcrumb {
+  background: transparent;
+  padding: 8px 0;
+}
+.breadcrumb-item a {
+  transition: color 0.3s ease;
+}
+.breadcrumb-item a:hover {
+  color: #6366f1 !important;
+}
+
+/* === 移动端 === */
+@media (max-width: 768px) {
+  #particle-canvas { opacity: 0.5; }
+  .index-card:hover { transform: none; }
+}
+
+/* ============================================
+ * 11. 评论区增强（txtmix 风格）
+ * ============================================ */
+#comments {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(139, 92, 246, 0.35);
+}
+
+.comments-intro {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.06));
+  border-left: 3px solid #8b5cf6;
+  border-radius: 8px;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+}
+
+.comments-intro-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c1d95;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro-title {
+  color: #c4b5fd;
+}
+
+.comments-intro-text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #718096;
+  line-height: 1.6;
+}
+
+html[data-user-color-scheme="dark"] .comments-intro-text {
+  color: #a7a9ad;
+}
+
+/* giscus iframe 圆角适配 */
+#comments iframe {
+  border-radius: 8px;
+}
+
+/* ============================================
+ * 12. 文章底部浏览量统计条
+ * ============================================ */
+.post-views-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0.75rem auto 1.75rem;
+  padding: 0.65rem 1.25rem;
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-views-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+}
+
+.post-views-icon {
+  font-size: 1rem;
+}
+
+.post-views-num {
+  color: #6366f1;
+  font-size: 1.05rem;
+  padding: 0 2px;
+}
+
+html[data-user-color-scheme="dark"] .post-views-bar {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.12));
+  border-color: rgba(139, 92, 246, 0.45);
+  color: #a7a9ad;
+}
+
+html[data-user-color-scheme="dark"] .post-views-num {
+  color: #818cf8;
+}
