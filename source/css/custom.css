@@ -663,3 +663,48 @@ html[data-user-color-scheme="dark"] .comments-intro-text {
 #comments iframe {
   border-radius: 8px;
 }
+
+/* ============================================
+ * 12. 文章底部浏览量统计条
+ * ============================================ */
+.post-views-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 2rem auto 1.5rem;
+  padding: 0.65rem 1.25rem;
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-views-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+}
+
+.post-views-icon {
+  font-size: 1rem;
+}
+
+.post-views-num {
+  color: #6366f1;
+  font-size: 1.05rem;
+  padding: 0 2px;
+}
+
+html[data-user-color-scheme="dark"] .post-views-bar {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.12));
+  border-color: rgba(139, 92, 246, 0.45);
+  color: #a7a9ad;
+}
+
+html[data-user-color-scheme="dark"] .post-views-num {
+  color: #818cf8;
+}

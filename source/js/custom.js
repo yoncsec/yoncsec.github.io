@@ -386,4 +386,34 @@ $(function () {
     }
   }
 
+  // ========================================
+  // 12. 文章底部浏览量统计条
+  // ========================================
+  var pagePvEl = document.getElementById('busuanzi_value_page_pv');
+  var postMetaViews = document.getElementById('busuanzi_container_page_pv');
+  if (pagePvEl && postMetaViews) {
+    // 在评论区上方插入统计条
+    var statsBar = document.createElement('div');
+    statsBar.className = 'post-views-bar';
+    statsBar.innerHTML =
+      '<span class="post-views-icon">👁</span>' +
+      '<span>本文已被阅读 <b class="post-views-num">…</b> 次</span>';
+    if (commentsEl && commentsEl.parentNode) {
+      commentsEl.parentNode.insertBefore(statsBar, commentsEl);
+    } else {
+      var container = document.querySelector('.post-content') || document.body;
+      container.appendChild(statsBar);
+    }
+    var statsNum = statsBar.querySelector('.post-views-num');
+    // 轮询等待不蒜子填充数值（最多 15 秒）
+    var pvTimer = setInterval(function () {
+      var v = pagePvEl.textContent && pagePvEl.textContent.trim();
+      if (v && v !== '') {
+        statsNum.textContent = v;
+        clearInterval(pvTimer);
+      }
+    }, 300);
+    setTimeout(function () { clearInterval(pvTimer); }, 15000);
+  }
+
 });
