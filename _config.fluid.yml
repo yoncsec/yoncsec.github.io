@@ -602,10 +602,10 @@ post:
       # Words per minute
       wpm: 60
 
-    # 浏览量计数
-    # Number of visits
+    # 浏览量计数（元信息里已关闭，由自定义统计条在标题下方展示）
+    # Number of visits (disabled in meta, shown by custom views bar)
     views:
-      enable: true
+      enable: false
       # 统计数据来源
       # Data Source
       # Options: busuanzi | leancloud | umami

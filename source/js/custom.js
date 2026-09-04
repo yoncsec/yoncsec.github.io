@@ -389,10 +389,16 @@ $(function () {
   // ========================================
   // 12. 文章顶部浏览量统计条
   // ========================================
-  var pagePvEl = document.getElementById('busuanzi_value_page_pv');
-  var postMetaViews = document.getElementById('busuanzi_container_page_pv');
   var postContent = document.querySelector('article.post-content');
-  if (pagePvEl && postMetaViews && postContent) {
+  if (postContent) {
+    // 元信息里的浏览量已关闭，这里自建隐藏容器让不蒜子填充数据
+    var pagePvEl = document.getElementById('busuanzi_value_page_pv');
+    if (!pagePvEl) {
+      pagePvEl = document.createElement('span');
+      pagePvEl.id = 'busuanzi_value_page_pv';
+      pagePvEl.style.display = 'none';
+      document.body.appendChild(pagePvEl);
+    }
     // 在文章标题下方插入统计条
     var statsBar = document.createElement('div');
     statsBar.className = 'post-views-bar';
