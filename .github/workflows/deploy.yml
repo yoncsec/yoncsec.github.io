@@ -21,7 +21,7 @@ jobs:
 
       - name: Sync posts from Obsidian vault
         run: |
-          git clone https://oauth2:${{ secrets.BLOG_POSTS_TOKEN }}@github.com/yoncsec/blog-posts.git /tmp/blog-posts
+          git clone --depth 1 https://github.com/yoncsec/blog-posts.git /tmp/blog-posts
           rm -rf source/_posts
           mkdir -p source/_posts
           cp /tmp/blog-posts/*.md source/_posts/ 2>/dev/null || true
